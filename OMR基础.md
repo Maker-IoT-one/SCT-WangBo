@@ -189,4 +189,37 @@ ORM与数据的对应关系
        return HttpResponse("数据添加成功！")
    ```
 
-   
+# 3数据的增删改查
+
+## 3.1 增加数据
+
+```python
+def creat_data(request):	
+    对象名 = 类（表）名(name='runoob')
+        对象名.save()
+        return HttpResponse("数据添加成功！")
+```
+
+## 3.2 删除数据
+
+```python
+def delete_data(request):
+    # 初始化
+    response = ""
+    
+    # 根据条件过滤要删除的数据
+    objects_to_delete = Test.objects.filter(name='the_name')
+    
+    # 删除数据
+    objects_to_delete.delete()
+    
+    response = "数据删除成功！"
+    return HttpResponse(response)
+```
+
+## 3.3修改数据
+
+
+
+## 3.4查找数据
+
