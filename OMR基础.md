@@ -71,3 +71,122 @@ ORM与数据的对应关系
 
 # 2快速体验
 
+## 2.1创建Django项目，创建APP并注册
+
+1. 创建Django项目
+
+2. 终端执行命令创建APP
+   ```python
+   python manage.py startapp APP名称
+   ```
+
+   本次执行`python manage.py startapp web`
+
+3. 在seetings.py中注册APP
+   在`INSTALLED_APPS`中添加`web.apps.WebConfig`，也可直接添加`web`
+
+   ```python
+   INSTALLED_APPS = [
+       'django.contrib.admin',
+       'django.contrib.auth',
+       'django.contrib.contenttypes',
+       'django.contrib.sessions',
+       'django.contrib.messages',
+       'django.contrib.staticfiles',
+       'web.apps.WebConfig'
+   ]
+   ```
+
+4. 在seetings.py中配置数据库项
+
+   将Django默认的数据库配置
+
+   ```python
+   DATABASES = {
+       'default': {
+           'ENGINE': 'django.db.backends.sqlite3',
+           'NAME': BASE_DIR / 'db.sqlite3',
+       }
+   }
+   ```
+
+   改为
+
+   ```python
+   DATABASES = { 
+       'default': 
+       { 
+           'ENGINE': 'django.db.backends.mysql',    # 数据库引擎
+           'NAME': 'runoob', # 数据库名称
+           'HOST': '127.0.0.1', # 数据库地址，本机 ip 地址 127.0.0.1 
+           'PORT': 3306, # 端口 
+           'USER': 'root',  # 数据库用户名
+           'PASSWORD': '123456', # 数据库密码
+       }  
+   }
+   ```
+
+5. 使用pymysql或者mysqlclient链接数据库
+   在与 settings.py 同级目录下的 `__init__.py` 中引入模块和进行配置
+
+   ```python 
+   import pymysql
+   pymysql.install_as_MySQLdb()
+   ```
+
+   或者安装mysqlclient
+
+   ```python
+   pip install mysqlclient
+   ```
+
+6. 在创建的APP目录下的的model.py创建表并编写表结构
+   ```python
+   from django.db import models
+    
+   class Test(models.Model):
+       name = models.CharField(max_length=20)
+   ```
+
+   - `CharField` ：表明类型，存储短文本
+   - `max_length` ：设置长度最大值
+
+   相当于在执行下面的SQL语句
+
+   ```SQL
+   CREATE TABLE test (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       name VARCHAR(20) NOT NULL
+   );
+   ```
+
+7. 执行语句，创建表结构
+   ```python
+   python3 manage.py makemigrations  # 告诉Django我们的模型有变更
+   python3 manage.py migrate  # 执行
+   ```
+
+8. 在urls.py中创建对应关系
+
+   ```python
+   from django.urls import path
+    
+   from web import views
+    
+   urlpatterns = [
+       path('test/', views.test_db),
+   ]
+   ```
+
+9. 进行测试
+   ```python
+   from django.http import HttpResponse
+   from web.models import Test
+   # 数据库操作
+   def test_db(request):
+       test1 = Test(name='the_name')
+       test1.save()
+       return HttpResponse("数据添加成功！")
+   ```
+
+   
