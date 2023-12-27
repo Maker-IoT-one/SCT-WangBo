@@ -39,6 +39,8 @@
    - git clone https://github.com/Maker-IoT-one/SCT-WangBo.git
 2. 推送到云端仓库
    - git push origin main
+3. 从云端同步到本地  
+   - git push
 
 ## 一些报错的解决方法
 1. port 443，Couldn't connect to server
@@ -59,7 +61,7 @@
       
          - 在Windows操作系统中，打开`设置`-->`网络和Internet`--->`代理`-->`手动设置代理`-->`使用代理服务器`-->`编辑`，查看代理IP地址和端口，以我的为例，代理IP地址：`127.0.0.1`端口`7890`
       
-         - 执行
+         - 执行  
            `git config --global http.proxy http://127.0.0.1:7890 `
       
            `git config --global https.proxy http://127.0.0.1:7890`
