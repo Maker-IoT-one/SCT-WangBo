@@ -44,13 +44,27 @@
 1. port 443，Couldn't connect to server
    - 出现的场景：
       - 执行`git push origin main` 进行提交时
+      
    - 出现的原因：  
-      - git在拉取或者提交项目时，中间会有git的http和https代理，但是我们本地环境本身就有SSL协议了，所以取消git的https代理即可，不行再取消http的代理。
+      - 1：git在拉取或者提交项目时，中间会有git的http和https代理，但是我们本地环境本身就有SSL协议了，所以取消git的https代理即可，不行再取消http的代理。
+      - 2：Git 所设端口与系统代理不一致，需重新设置
+      
    - 解决方法：  
-      1. 科学上网
-      2. 终端执行
+      1. 终端执行
+      
          - git config --global --unset http.proxy 
          - git config --global --unset https.proxy
+      
+      2. 重新设置代理
+      
+         - 在Windows操作系统中，打开`设置`-->`网络和Internet`--->`代理`-->`手动设置代理`-->`使用代理服务器`-->`编辑`，查看代理IP地址和端口，以我的为例，代理IP地址：`127.0.0.1`端口`7890`
+      
+         - 执行
+           `git config --global http.proxy http://127.0.0.1:7890 `
+      
+           `git config --global https.proxy http://127.0.0.1:7890`
+      
+      3. 科学上网
 
 # 2023.12.22Maker Studio
 
