@@ -23,4 +23,8 @@
 [点击访问API接口笔记](https://github.com/Maker-IoT-one/SCT-WangBo/blob/main/%E5%90%8E%E7%AB%AF%E9%83%A8%E5%88%86/API%E6%8E%A5%E5%8F%A3.md)
 # 技能
 1. git
-	- 见git.md
+	- [点击访问git笔记](https://github.com/Maker-IoT-one/SCT-WangBo/blob/main/%E5%85%B6%E4%BB%96/git.md)
+
+
+
+	
