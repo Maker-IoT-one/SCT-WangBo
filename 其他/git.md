@@ -40,7 +40,7 @@
 2. 推送到云端仓库
    - git push origin main
 3. 从云端同步到本地  
-   - git push
+   - git pull
 
 ## 一些报错的解决方法
 1. port 443，Couldn't connect to server
